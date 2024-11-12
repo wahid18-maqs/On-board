@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    Home
+{% endblock %}
+
+{% block content %}
+    <section class="job-form-section job-form-section--image" id="search_jobs">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="job-form-box">
+                        <h2 class="heading">Find  <span class="accent">jobs</span> 
+                        </h2>
+
+                        <form id="job-main-form" method="get" action="{% url 'jobs:search' %}" class="job-main-form">
+                            <div class="controls">
+                                <div class="form-group">
+                                    <label for="profession">Profession</label>
+                                    <input type="text" id="profession" name="profession" placeholder="Profession you are looking for" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="location">Location</label>
+                                    <input type="text" id="location" name="location" placeholder="Any particular location?" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-outline-white-primary job-main-form__button">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                        
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="bg-light-gray">
+        <div class="container">
+            <h3 class="heading">Featured jobs</h3>
+            {% for job in jobs %}
+            <div class="job-listing  job-listing--last">
+                <div class="row">
+                    <div class="col-md-12 col-lg-6">
+                        <div class="row">
+                            <div class="col-2">
+                                <img src="{% static 'img/jobposting.png' %}"
+                                     alt="ShareBoardd " class="img-fluid">
+                            </div>
+                            <div class="col-10">
+                                <h4 class="job__title">
+                                    <a href="{% url 'jobs:jobs-detail' job.id %}">{{ job.title }}</a>
+                                </h4>
+                                <p class="featured__details"><i class="fa fa-map-marker job__location"></i>
+                                    {{ job.location }}
+                                    {% if job.type == '1' %}
+                                        <span class="badge featured-badge badge-success">Full time</span>
+                                    {% elif job.type == '2' %}
+                                        <span class="badge featured-badge badge-primary">Part time</span>
+                                    {% else %}
+                                        <span style="color: #1eb919;" class="badge featured-badge badge-warning">Internship</span>
+                                    {% endif %}
+                                </p>
+                                <p>{{ job.description }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+    <section class="section-divider">
+        <div class="container">
+            <div class="row" >
+                <div class="col-lg-12 text-center" >
+                    <p style="font-size: x-large;">Search for jobs </p>
+                    <p><a href="#search_jobs" class="btn btn-outline-light" style="color: #010f00; background-color: white; border-width: 2px;">job offers </a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+        
+
+{% endblock %}

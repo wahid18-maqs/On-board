@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    Home
+{% endblock %}
+
+{% block content %}
+    <section class="bg-light-gray">
+        <div class="container">
+            <h3 class="heading">Applications</h3>
+            {% for job in jobs %}
+            <div class="job-listing  job-listing--last">
+                <div class="row">
+                    <div class="col-md-12 col-lg-6">
+                        <div class="row">
+                            <div class="col-2">
+                                <img src="{% static 'img/jobposting.png' %}"
+                                     alt="ShareBoardd " class="img-fluid">
+                            </div>
+                            <div class="col-10">
+                                <h4 class="job__title">
+                                    <a href="{% url 'jobs:jobs-detail' job.id %}">{{ job.title }}</a>
+                                </h4>
+                                <p class="featured__details"><i class="fa fa-map-marker job__location"></i>
+                                    {{ job.location }}
+                                    {% if job.type == '1' %}
+                                        <span class="badge featured-badge badge-success">Full time</span>
+                                    {% elif job.type == '2' %}
+                                        <span class="badge featured-badge badge-primary">Part time</span>
+                                    {% else %}
+                                        <span style="color: #ffffff;" class="badge featured-badge badge-warning">Internship</span>
+                                    {% endif %}
+                                </p>
+                                <p>{{ job.description }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+
+        </div>
+    </section>
+
+{% endblock %}
