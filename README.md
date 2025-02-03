@@ -57,8 +57,7 @@ A web-based job portal that connects job seekers with employers, allowing users 
 
 1. **Clone the repository:**  
    ```sh
-   git clone https://github.com/your-repo/job-portal.git
-   cd job-portal
+   https://github.com/wahid18-maqs/On-board.git
 
 2 . **Create a virtual environment:**
     ```sh
