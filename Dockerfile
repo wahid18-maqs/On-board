@@ -22,17 +22,11 @@ RUN pip install --upgrade pip && pip install -r requirements.txt
 # Copy project files
 COPY . .
 
-# Copy environment file
+# Copy environment variables file
 COPY .env .env
 
-# Run migrations
-RUN python manage.py migrate
-
-# Collect static files using current settings.py
-RUN python manage.py collectstatic --noinput
-
-# Expose the port that Django will run on
+# Expose Django port
 EXPOSE 8000
 
-# Run with gunicorn using the current wsgi setup
-CMD ["gunicorn", "jobs.wsgi:application", "--bind", "0.0.0.0:8000"]
+# Default command (runs migrations and collects static at runtime)
+CMD ["sh", "-c", "python manage.py migrate && python manage.py collectstatic --noinput && gunicorn jobs.wsgi:application --bind 0.0.0.0:8000"]
