@@ -4,6 +4,7 @@ from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, ListView
 from reportlab.pdfgen import canvas
+from django.http import HttpResponse
 
 from jobsapp.decorators import user_is_employer
 from jobsapp.forms import CreateJobForm
