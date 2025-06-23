@@ -22,8 +22,6 @@ RUN pip install --upgrade pip && pip install -r requirements.txt
 # Copy project files
 COPY . .
 
-# Copy environment variables file
-COPY .env .env
 
 # Expose Django port
 EXPOSE 8000
