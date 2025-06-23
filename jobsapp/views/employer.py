@@ -43,8 +43,9 @@ class ApplicantPerJobView(BaseEmployerView, ListView):
 
 
 class JobCreateView(BaseEmployerView, CreateView):
-    template_name = 'jobs/create.html'
+    model = Job  
     form_class = CreateJobForm
+    template_name = 'jobs/create.html'
     extra_context = {'title': 'Post New Job'}
     success_url = reverse_lazy('jobs:employer-dashboard')
 

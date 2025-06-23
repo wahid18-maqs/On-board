@@ -10,7 +10,7 @@ WORKDIR /app
 
 # Install system dependencies
 RUN apt-get update \
-    && apt-get install -y gcc libpq-dev curl \
+    && apt-get install -y gcc libpq-dev sqlite3 \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy only requirements first for better Docker caching
