@@ -9,12 +9,13 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - ./db.sqlite3:/app/db.sqlite3
+      - type: bind
+        source: ./db.sqlite3
+        target: /app/db.sqlite3
     env_file:
       - .env
     command: >
       sh -c "python manage.py migrate &&
              python manage.py collectstatic --noinput &&
+             echo 'App running at: http://127.0.0.1:8000' &&
              gunicorn jobs.wsgi:application --bind 0.0.0.0:8000"
-volumes:
-  - ./media:/app/media
